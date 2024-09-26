@@ -3,8 +3,8 @@ from .views.main_view import home,create_blog,single_blog,edit_blog
 from .views.auth_view import register,login
 
 urlpatterns = [
-    path("",home), 
-    path("register/",register), 
+    path("",home, name="home"), 
+    path("register/",register,name="register"), 
     path("login/",login), 
     path("create/",create_blog), 
     path("single/",single_blog), 
