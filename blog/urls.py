@@ -5,7 +5,7 @@ from .views.auth_view import register,login
 urlpatterns = [
     path("",home, name="home"), 
     path("register/",register,name="register"), 
-    path("login/",login), 
+    path("login/",login, name="login"), 
     path("create/",create_blog), 
     path("single/",single_blog), 
     path("edit/",edit_blog)
