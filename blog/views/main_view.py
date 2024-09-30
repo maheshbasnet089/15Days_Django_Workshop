@@ -4,7 +4,8 @@ from django.contrib.auth.decorators import login_required
 
 
 def home(request):
-    return render(request,'main/home.html')
+    blogs = Blogs.objects.all()
+    return render(request,'main/home.html',{'blogs' : blogs})
 
 def single_blog(request):
     return render(request,"main/single_blog.html")
