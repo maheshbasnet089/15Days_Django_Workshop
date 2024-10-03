@@ -27,4 +27,8 @@ def create_blog(request):
   
     return render(request,"main/create_blog.html")
 
+def delete_blog(request,blog_id):
+    blog = get_object_or_404(Blogs,pk=blog_id)
+    blog.delete()
+    return redirect("home")
         
