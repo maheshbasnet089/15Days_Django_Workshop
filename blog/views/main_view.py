@@ -21,14 +21,19 @@ def create_blog(request):
         subtitle =  request.POST.get("subtitle")
         description = request.POST.get("description")
         image = request.FILES.get("image")
-        blog = Blogs(title=title,subtitle=subtitle,description=description,image=image)
+        blog = Blogs(title=title,subtitle=subtitle,description=description,image=image,author=request.user)
         blog.save()
         return redirect("home")
   
     return render(request,"main/create_blog.html")
 
+@login_required
 def delete_blog(request,blog_id):
     blog = get_object_or_404(Blogs,pk=blog_id)
-    blog.delete()
-    return redirect("home")
+    if blog.author == request.user:
+        blog.delete()
+        return redirect("home")
+    else:
+        return redirect('blog_detail',blog_id=blog.id)
+    
         
